@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>学生列表</title>
+    <link rel="stylesheet"  th:href="@{/css/bootstrap.css}"></link>
+</head>
+<body class="container">
+<br/>
+<h2>Welcome to Student Score Management System！</h2>
+<br/>
+<h3>学生列表</h3>
+<br/>
+<div>
+    <form class="form-inline" action="#" th:action="@{/studentQuery}" method="post" >
+        <div class="form-group">
+            <label>校园卡号：</label>
+            <input type="text" class="form-control" id="cardNumber" th:field="*{number}">
+        </div>
+        <div class="form-group">
+            <label>学生姓名：</label>
+            <input type="text" class="form-control" id="studentName" th:field="*{name}">
+        </div>
+        <div class="form-group">
+            <label>班级：</label>
+            <select class="form-control"  id="classselect" th:field="*{classid}">
+                <option value="0" disabled selected>---请选择---</option>
+                <option value="1">钱江高二（01）班</option>
+                <option value="2">钱江高二（02）班</option>
+                <option value="3">钱江高二（03）班</option>
+                <option value="4">钱江高二（04）班</option>
+                <option value="5">钱江高二（05）班</option>
+                <option value="6">钱江高二（06）班</option>
+                <option value="7">钱江高二（07）班</option>
+                <option value="8">钱江高二（08）班</option>
+                <option value="9">钱江高二（09）班</option>
+                <option value="10">钱江高二（10）班</option>
+                <option value="11">钱江高二（11）班</option>
+                <option value="12">钱江高二（12）班</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">查询</button>
+    </form>
+</div>
+<div class="modal-header no-margin-top">
+    <ul class="pagination pull-right no-margin">
+
+        <!-- 首页 -->
+        <li>
+            <a th:href="'/studentList?page=0'">首页</a>
+        </li>
+
+        <!-- 上一页 -->
+        <li th:if="${studentList.hasPrevious()}">
+            <a th:href="'/studentList?page=' + ${studentList.previousPageable().getPageNumber()}" th:text="上一页"></a>
+        </li>
+
+        <!-- 中间页 -->
+        <li th:each="pageNum:${#numbers.sequence(0, studentList.getTotalPages() - 1)}">
+            <a th:href="'/studentList?page=' + ${pageNum}" th:text="${pageNum + 1}" th:if="${pageNum ne studentList.pageable.getPageNumber()}"></a>
+            <a th:href="'/studentList?page=' + ${pageNum}" th:text="${pageNum + 1}" th:if="${pageNum eq studentList.pageable.getPageNumber()}" th:style="'font-weight:bold;background: #6faed9;'"></a>
+        </li>
+
+        <!-- 下一页 -->
+        <li th:if="${studentList.hasNext()}">
+            <a th:href="'/studentList?page=' + ${studentList.nextPageable().getPageNumber()}" th:text="下一页"></a>
+        </li>
+
+        <!-- 尾页 -->
+        <li>
+            <a th:href="'/studentList?page=' + ${studentList.getTotalPages() - 1}">尾页</a>
+        </li>
+
+    </ul>
+</div>
+<div class="with:80%">
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>校园卡号</th>
+            <th>学生姓名</th>
+            <th>性别</th>
+            <th>班级</th>
+            <th>修改</th>
+            <th>删除</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="student : ${studentList}">
+            <th scope="row" th:text="${studentStat.index + 1}">1</th>
+            <td th:text="${student.number}">001</td>
+            <td th:text="${student.name}">neo</td>
+            <td th:text="${student.gender}">123</td>
+            <td th:text="${student.classname}">male</td>
+            <td><a href="#">edit</a></td>
+            <td><a href="#">delete</a></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<div class="modal-footer no-margin-top">
+    <ul class="pagination pull-right no-margin">
+        <!-- 首页 -->
+        <li>
+            <a th:href="'/studentList?page=0'">首页</a>
+        </li>
+
+        <!-- 上一页 -->
+        <li th:if="${studentList.hasPrevious()}">
+            <a th:href="'/studentList?page=' + ${studentList.previousPageable().getPageNumber()}" th:text="上一页"></a>
+        </li>
+
+        <!-- 中间页 -->
+        <li th:each="pageNum:${#numbers.sequence(0, studentList.getTotalPages() - 1)}">
+            <a th:href="'/studentList?page=' + ${pageNum}" th:text="${pageNum + 1}" th:if="${pageNum ne studentList.pageable.getPageNumber()}"></a>
+            <a th:href="'/studentList?page=' + ${pageNum}" th:text="${pageNum + 1}" th:if="${pageNum eq studentList.pageable.getPageNumber()}" th:style="'font-weight:bold;background: #6faed9;'"></a>
+        </li>
+
+        <!-- 下一页 -->
+        <li th:if="${studentList.hasNext()}">
+            <a th:href="'/studentList?page=' + ${studentList.nextPageable().getPageNumber()}" th:text="下一页"></a>
+        </li>
+
+        <!-- 尾页 -->
+        <li>
+            <a th:href="'/studentList?page=' + ${studentList.getTotalPages() - 1}">尾页</a>
+        </li>
+
+    </ul>
+</div>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>考试成绩管理系统</title>
+    <link rel="stylesheet"  th:href="@{/css/bootstrap.css}"></link>
+</head>
+<body class="container">
+<br/>
+<h2>Welcome to Student Score Management System！</h2>
+<br/>
+<h3>创建考试</h3>
+<br/>
+<div>
+    <form action="#" th:action="@{/exercise}" th:object="${exercise}" method="post">
+        <p>考试名称:<input type="text" th:field="*{name}" /></p>
+        <p>考试时间:<input type="text" th:field="*{date}" /></p>
+        <p>考试科目:<input type="text" th:field="*{subject}" /></p>
+        <p><input type="submit" value="提交" class="btn btn-info"/> <input type="reset" value="重置" class="btn btn-info"/></p>
+    </form>
+</div>
+</body>
+</html>
