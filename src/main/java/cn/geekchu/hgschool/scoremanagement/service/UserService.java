@@ -11,12 +11,22 @@ public class UserService {
     @Resource
     private UserRepository userRepository;
 
-    public boolean validatePassword(String username, String password){
-        User user = userRepository.findUserByUsername(username);
-        if(password.equals(user.getPassword())){
-            return true;
-        }else{
-            return  false;
-        }
+    public boolean isExist(String username) {
+        User user = userRepository.findByUsername(username);;
+        return null!=user;
     }
+
+    public boolean validatePassword(String username, String password) {
+        User user = getUser(username, password);
+        return null!=user;
+    }
+
+    public User getUser(String username, String password){
+        return userRepository.getByUsernameAndPassword(username, password);
+    }
+
+    public void add(User user) {
+        userRepository.save(user);
+    }
+
 }

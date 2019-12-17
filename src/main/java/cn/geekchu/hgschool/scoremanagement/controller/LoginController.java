@@ -1,6 +1,7 @@
 package cn.geekchu.hgschool.scoremanagement.controller;
 
-import cn.geekchu.hgschool.scoremanagement.entity.ResponseResult;
+import cn.geekchu.hgschool.scoremanagement.Result.ResponseResult;
+import cn.geekchu.hgschool.scoremanagement.Result.ResultFactory;
 import cn.geekchu.hgschool.scoremanagement.entity.User;
 import cn.geekchu.hgschool.scoremanagement.service.UserService;
 import org.springframework.stereotype.Controller;
@@ -11,7 +12,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.util.HtmlUtils;
 
 import javax.annotation.Resource;
-import java.util.Objects;
+import javax.servlet.http.HttpSession;
+
 
 @Controller
 public class LoginController {
@@ -21,23 +23,19 @@ public class LoginController {
     @CrossOrigin
     @PostMapping(value = "api/login")
     @ResponseBody
-    public ResponseResult login(@RequestBody User requestUser) throws Exception{
+    public ResponseResult login(@RequestBody User requestUser, HttpSession session){
         // 对 html 标签进行转义，防止 XSS 攻击
         String username = requestUser.getUsername();
         username = HtmlUtils.htmlEscape(username);
         String password = requestUser.getPassword();
 
-        int code = 500;
-        String message = "系统繁忙，请稍后再试";
-        ResponseResult result = new ResponseResult(code,message);
-
-        if (userService.validatePassword(username,password)) {
-            result.setCode(200);
-            result.setMessage("success");
+        User user = userService.getUser(username,password);
+        if (null==user) {
+            String message = "用户名或密码错误";
+            return ResultFactory.buildFailResult(message);
         } else {
-            result.setCode(400);
-            result.setMessage("用户名或密码错误");
+            session.setAttribute("user", user);
         }
-        return result;
+        return ResultFactory.buildSuccessResult(user);
     }
 }
