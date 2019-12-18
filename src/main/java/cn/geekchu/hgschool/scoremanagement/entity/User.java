@@ -12,15 +12,16 @@ public class User implements Serializable {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Integer id;
+    @Column(nullable = false, unique = true)
     private String username;
+    private String nickname;
     private String password;
     private String mobile;
     private String email;
     private String weixinOpenid;
-    private String sessionKey;
+    @Transient
+    private Boolean rememberme;
     private Boolean status;
-    private LocalDateTime lastLoginTime;
-    private String lastLoginIp;
     private LocalDateTime createTime;
     private LocalDateTime updateTime;
     private Boolean deleted;

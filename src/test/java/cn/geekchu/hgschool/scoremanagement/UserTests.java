@@ -6,6 +6,7 @@ import org.apache.shiro.crypto.hash.SimpleHash;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
+import org.junit.validator.PublicClassValidator;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -28,6 +29,4 @@ public class UserTests {
         String encodedPassword = new SimpleHash("md5", password, salt, times).toString();
         Assert.assertEquals(encodedPassword,"82015a0d978393aa29fa047a9c740870");
     }
-
-
 }
