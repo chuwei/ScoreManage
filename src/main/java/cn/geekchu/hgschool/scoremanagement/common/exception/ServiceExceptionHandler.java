@@ -1,7 +1,5 @@
 package cn.geekchu.hgschool.scoremanagement.common.exception;
 
-import cn.geekchu.hgschool.scoremanagement.Result.ResponseResult;
-import cn.geekchu.hgschool.scoremanagement.Result.ResultFactory;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.springframework.web.bind.annotation.ExceptionHandler;

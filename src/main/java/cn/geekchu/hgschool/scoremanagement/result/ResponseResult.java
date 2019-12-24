@@ -1,4 +1,4 @@
-package cn.geekchu.hgschool.scoremanagement.Result;
+package cn.geekchu.hgschool.scoremanagement.result;
 
 import lombok.Data;
 

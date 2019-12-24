@@ -1,4 +1,4 @@
-package cn.geekchu.hgschool.scoremanagement.Result;
+package cn.geekchu.hgschool.scoremanagement.result;
 
 public enum ResultCode {
     SUCCESS(200),

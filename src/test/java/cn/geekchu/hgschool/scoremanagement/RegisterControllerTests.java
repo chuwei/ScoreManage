@@ -1,9 +1,8 @@
 package cn.geekchu.hgschool.scoremanagement;
 
-import cn.geekchu.hgschool.scoremanagement.Result.ResponseResult;
+import cn.geekchu.hgschool.scoremanagement.result.ResponseResult;
 import cn.geekchu.hgschool.scoremanagement.controller.RegisterController;
 import cn.geekchu.hgschool.scoremanagement.entity.User;
-import cn.geekchu.hgschool.scoremanagement.service.UserService;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;

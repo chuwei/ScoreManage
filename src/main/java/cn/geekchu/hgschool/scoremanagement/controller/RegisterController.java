@@ -1,8 +1,7 @@
 package cn.geekchu.hgschool.scoremanagement.controller;
 
-import cn.geekchu.hgschool.scoremanagement.Result.ResponseResult;
-import cn.geekchu.hgschool.scoremanagement.Result.ResultFactory;
-import cn.geekchu.hgschool.scoremanagement.common.exception.ServiceException;
+import cn.geekchu.hgschool.scoremanagement.result.ResponseResult;
+import cn.geekchu.hgschool.scoremanagement.result.ResultFactory;
 import cn.geekchu.hgschool.scoremanagement.entity.User;
 import cn.geekchu.hgschool.scoremanagement.service.UserService;
 import org.springframework.stereotype.Controller;

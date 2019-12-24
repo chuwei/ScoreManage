@@ -1,6 +1,4 @@
-package cn.geekchu.hgschool.scoremanagement.Result;
-
-import cn.geekchu.hgschool.scoremanagement.Result.ResponseResult;
+package cn.geekchu.hgschool.scoremanagement.result;
 
 public class ResultFactory {
 
